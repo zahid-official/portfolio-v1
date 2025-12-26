@@ -42,10 +42,7 @@ const Navbar = () => {
     >
       <div className="mx-auto w-full max-w-7xl px-3 py-6 flex items-center gap-2.5 justify-between">
         {/* Logo */}
-        <Link
-          href="#home"
-          className="w-28"
-        >
+        <Link href="#home" className="w-28">
           <Image src={logo} alt="logo" />
         </Link>
 
@@ -73,14 +70,15 @@ const Navbar = () => {
 
         {/* Let's Talk */}
         <div className="flex items-center gap-2">
-          <Link
-            href="mailto:zahid.official8@gmail.com"
-            className={cn(
-              "group inline-flex items-center justify-self-end gap-2 rounded-full border border-black/10 px-6 py-3 text-sm font-semibold backdrop-blur transition-all duration-300 max-md:hidden"
-            )}
-          >
-            Let&apos;s talk
-            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          <Link href="mailto:zahid.official8@gmail.com">
+            <button
+              className={cn(
+                "group inline-flex items-center justify-self-end gap-2 rounded-full border border-black/10 px-6 py-3 text-sm font-semibold backdrop-blur transition-colors duration-200 max-md:hidden cursor-pointer hover:bg-foreground hover:text-background"
+              )}
+            >
+              Let&apos;s talk
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </button>
           </Link>
 
           {/* Mobile menu */}
