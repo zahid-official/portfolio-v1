@@ -79,18 +79,18 @@ const Navbar = () => {
           </Link>
 
           {/* Mobile menu */}
-          <DropdownMenu onOpenChange={setIsMenuOpen}>
+          <DropdownMenu modal={false} onOpenChange={setIsMenuOpen}>
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="hidden size-11 items-center justify-center rounded-full border cursor-pointer border-black/10 bg-white/80 text-slate-900 transition-all max-md:inline-flex"
+                className="hidden size-9 items-center justify-center rounded-full border cursor-pointer border-black/10 bg-white/80 text-slate-900 transition-all max-md:inline-flex"
                 aria-expanded={isMenuOpen}
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
-                  <X className="size-5" />
+                  <X className="size-4.5" />
                 ) : (
-                  <Menu className="size-5" />
+                  <Menu className="size-4.5" />
                 )}
               </button>
             </DropdownMenuTrigger>
