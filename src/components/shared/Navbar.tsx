@@ -44,7 +44,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href="#home"
-          className="justify-self-start w-28 text-3xl font-semibold leading-none tracking-tight text-slate-900 sm:text-4xl"
+          className="w-28"
         >
           <Image src={logo} alt="logo" />
         </Link>
@@ -52,16 +52,21 @@ const Navbar = () => {
         {/* Navbar */}
         <nav
           className={cn(
-            "max-md:hidden flex items-center justify-self-center gap-7 rounded-full border border-black/10 px-8 py-3 text-sm font-medium text-slate-700  transition-all duration-300"
+            "max-md:hidden flex items-center justify-self-center gap-7 rounded-full border border-black/10 px-8 py-3 text-sm font-medium transition-all duration-300"
           )}
         >
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="transition-colors duration-200 hover:text-slate-900"
+              className="group relative overflow-hidden"
             >
-              {item.label}
+              <span className="block transition-transform duration-300 group-hover:-translate-y-full">
+                {item.label}
+              </span>
+              <span className="absolute left-0 top-full block transition-transform duration-300 group-hover:-translate-y-full">
+                {item.label}
+              </span>
             </Link>
           ))}
         </nav>
@@ -71,7 +76,7 @@ const Navbar = () => {
           <Link
             href="mailto:zahid.official8@gmail.com"
             className={cn(
-              "group inline-flex items-center justify-self-end gap-2 rounded-full border border-black/10 px-6 py-3 text-sm font-semibold text-slate-900 backdrop-blur transition-all duration-300 max-md:hidden"
+              "group inline-flex items-center justify-self-end gap-2 rounded-full border border-black/10 px-6 py-3 text-sm font-semibold backdrop-blur transition-all duration-300 max-md:hidden"
             )}
           >
             Let&apos;s talk
@@ -83,7 +88,7 @@ const Navbar = () => {
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="hidden size-9 items-center justify-center rounded-full border cursor-pointer border-black/10 bg-white/80 text-slate-900 transition-all max-md:inline-flex"
+                className="hidden size-9 items-center justify-center rounded-full border cursor-pointer border-black/10 bg-white/80 transition-all max-md:inline-flex"
                 aria-expanded={isMenuOpen}
                 aria-label="Toggle menu"
               >
@@ -96,15 +101,24 @@ const Navbar = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="w-40 py-2 text-sm font-medium text-slate-700 max-md:block md:hidden"
+              className="w-40 py-2 text-sm font-medium  max-md:block md:hidden"
             >
               {navItems.map((item) => (
                 <DropdownMenuItem
                   key={item.href}
-                  className="cursor-pointer justify-center text-sm font-medium text-slate-700 hover:text-slate-900"
+                  className="group relative block w-full cursor-pointer overflow-hidden text-center text-sm font-medium"
                   asChild
                 >
-                  <Link href={item.href}>{item.label}</Link>
+                  <Link href={item.href}>
+                    <span className="grid w-full place-items-center overflow-hidden">
+                      <span className="col-start-1 row-start-1 transition-transform duration-300 group-hover:-translate-y-full">
+                        {item.label}
+                      </span>
+                      <span className="col-start-1 row-start-1 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+                        {item.label}
+                      </span>
+                    </span>
+                  </Link>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
