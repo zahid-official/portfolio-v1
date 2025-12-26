@@ -1,7 +1,9 @@
 import { ThemeProvider } from "@/provider/theme-provider";
 import type { Metadata } from "next";
+import { Barlow_Condensed } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const suisse = localFont({
   variable: "--font-suisse",
@@ -35,6 +37,13 @@ const suisse = localFont({
   ],
 });
 
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow-condensed",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Zahid | Portfolio",
   description: "Zahid's personal portfolio showcasing projects, skills and contact information.",
@@ -51,7 +60,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${suisse.variable} antialiased`}>
+      <body className={`${suisse.variable} ${barlowCondensed.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -59,6 +68,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster richColors/>
         </ThemeProvider>
       </body>
     </html>

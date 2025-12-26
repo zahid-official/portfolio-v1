@@ -73,7 +73,7 @@ const Navbar = () => {
           <Link href="mailto:zahid.official8@gmail.com">
             <button
               className={cn(
-                "group inline-flex items-center justify-self-end gap-2 rounded-full border border-black/10 px-6 py-3 text-sm font-semibold backdrop-blur transition-colors duration-200 max-md:hidden cursor-pointer hover:bg-foreground hover:text-background"
+                "group inline-flex items-center justify-self-end gap-2 border border-black/10 px-6 py-3 text-sm font-semibold transition-colors duration-200 max-md:hidden cursor-pointer hover:bg-foreground hover:text-background"
               )}
             >
               Let&apos;s talk

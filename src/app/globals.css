@@ -127,3 +127,18 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+@layer utilities {
+  .font-condensed {
+    font-family: var(--font-barlow-condensed), sans-serif;
+  }
+
+  .transparent-text {
+    color: transparent;
+    -webkit-text-stroke: 2px black;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+  }
+}
