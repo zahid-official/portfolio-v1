@@ -66,38 +66,44 @@ const Hero = () => {
         </div>
 
         {/* social */}
-        <div className="fixed bottom-16 right-3 hidden flex-col items-center gap-4 text-2xl lg:flex">
-          <Link
-            href="https://www.linkedin.com/in/zahid-web/"
-            target="_blank"
-            rel="noreferrer"
-            className="transition-colors hover:text-black/70"
-          >
-            <FaLinkedinIn />
-          </Link>
-
-          <Link
-            href="https://github.com/zahid-official"
-            target="_blank"
-            rel="noreferrer"
-            className="transition-colors hover:text-black/70"
-          >
-            <FaGithub />
-          </Link>
-
-          <Link
-            href="https://www.facebook.com/zahid.official8"
-            target="_blank"
-            rel="noreferrer"
-            className="transition-colors hover:text-black/70"
-          >
-            <FaFacebookF />
-          </Link>
-
-          <div className="h-16 w-px bg-black/60"></div>
-          <p className="vertical-text text-lg font-bold text-black">
-            Connect on
-          </p>
+        <div className="social-rail fixed bottom-16 right-3 hidden items-center lg:flex">
+          <ul className="social-rail__list">
+            <li>
+              <Link
+                href="https://www.linkedin.com/in/zahid-web/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="social-rail__link"
+              >
+                <FaLinkedinIn />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://github.com/zahid-official"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="social-rail__link"
+              >
+                <FaGithub />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://www.facebook.com/zahid.official8"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="social-rail__link"
+              >
+                <FaFacebookF />
+              </Link>
+            </li>
+          </ul>
+          <div className="social-rail__divider" />
+          <p className="social-rail__label vertical-text">Follow us</p>
         </div>
       </div>
     </header>

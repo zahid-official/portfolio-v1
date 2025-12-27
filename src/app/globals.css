@@ -141,4 +141,45 @@
   .vertical-text {
     writing-mode: vertical-lr;
   }
+
+  .social-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+    mix-blend-mode: exclusion;
+    z-index: 20;
+  }
+
+  .social-rail__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .social-rail__link {
+    display: inline-flex;
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: opacity 150ms ease;
+  }
+
+  .social-rail__link:hover {
+    opacity: 0.75;
+  }
+
+  .social-rail__divider {
+    width: 1px;
+    height: 4rem;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  .social-rail__label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
 }
