@@ -1,8 +1,10 @@
+import HomePageClient from "@/components/home/HomePageClient";
+
 // HomePage Component
 const HomePage = () => {
   return (
     <div>
-      <h1>Welcome to the HomePage Component</h1>
+      <HomePageClient />
     </div>
   );
 };
