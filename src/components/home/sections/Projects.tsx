@@ -7,12 +7,7 @@ import { projects } from "@/data/projects";
 // Projects Component
 const Projects = () => {
   return (
-    <section id="projects" className="relative overflow-hidden bg-background py-36">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-20 right-0 h-72 w-72 rounded-full bg-black/5 blur-[120px]" />
-        <div className="absolute -bottom-24 left-10 h-80 w-80 rounded-full bg-black/5 blur-[140px]" />
-      </div>
-
+    <section id="projects" className="relative overflow-hidden bg-background pt-32 pb-20">
       <div className="container relative mx-auto max-w-7xl px-5">
         {/* Title */}
         <div className="text-center text-foreground">
@@ -37,54 +32,73 @@ const Projects = () => {
 
         {/* Projects */}
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <article
-              key={project.slug}
-              className="group relative overflow-hidden rounded-3xl border border-black/10 bg-white shadow-[0_20px_50px_-36px_rgba(15,15,15,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_28px_70px_-40px_rgba(15,15,15,0.45)]"
-            >
-              <div className="relative h-56 overflow-hidden sm:h-64">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  fill
-                  className="object-cover object-center transition duration-500 ease-out group-hover:scale-[1.04]"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </div>
+          {projects.map((project, index) => {
+            const cardNumber = String(index + 1).padStart(2, "0");
 
-              <div className="p-6 text-foreground">
-                <span className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">
-                  {project.category}
-                </span>
-                <h4 className="mt-3 text-xl font-semibold">{project.title}</h4>
+            return (
+              <article
+                key={project.slug}
+                className="group relative pb-8 rounded-2xl border border-black/10 bg-white p-6 shadow-[0_20px_50px_-36px_rgba(15,15,15,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_28px_70px_-40px_rgba(15,15,15,0.45)]"
+              >
+                <div className="relative rounded-xl border h-48 overflow-hidden sm:h-56">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    className="object-cover object-center transition duration-500 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-tr from-black/25 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-4 text-foreground">
+                  <span className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-foreground/60">
+                    {project.category}
+                  </span>
+                  <span className="text-4xl font-semibold text-foreground/10">
+                    {cardNumber}
+                  </span>
+                </div>
+
+                <h4 className="mt-3 text-xl font-semibold text-foreground">
+                  {project.title}
+                </h4>
                 <p className="mt-3 text-sm text-foreground/70">
                   {project.summary}
                 </p>
+
+                <ul className="mt-4 space-y-2 text-sm text-foreground/70">
+                  {project.highlights.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/35" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link
                     href={project.links.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black hover:text-white"
+                    className="group/cta inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] bg-foreground text-background transition-all duration-200 hover:border-black/25 hover:bg-secondary hover:text-foreground"
                     aria-label={`Visit live site for ${project.title}`}
                   >
                     Visit Live
-                    <ArrowUpRight className="size-4" />
+                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
                   </Link>
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black/5 hover:text-foreground"
+                    className="group/cta inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 transition-all duration-200 hover:border-black/25 hover:bg-black/5 hover:text-foreground"
                     aria-label={`View details for ${project.title}`}
                   >
                     View Details
-                    <ArrowUpRight className="size-4" />
+                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
                   </Link>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

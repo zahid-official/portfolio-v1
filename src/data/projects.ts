@@ -36,13 +36,12 @@ export const projects: Project[] = [
     title: "Lorvic Furniture",
     category: "E-commerce Furniture",
     summary:
-      "A premium furniture storefront focused on storytelling, clean product hierarchy, and conversion-first layout.",
+      "A premium furniture storefront focused on storytelling, clean product hierarchy, and conversion-first flow.",
     description:
-      "Lorvic is a modern furniture storefront built to balance editorial storytelling with product discovery. I focused on typographic rhythm, fast-loading imagery, and a consistent component system to keep the browsing experience sharp and conversion focused.",
+      "Lorvic blends editorial storytelling with product discovery. I focused on typographic rhythm, fast-loading imagery, and a consistent component system to keep browsing sharp and conversion focused.",
     highlights: [
       "Typography-led hero and product focus",
       "Clear CTAs and catalog preview flow",
-      "Responsive layout with visual balance",
     ],
     image: projectOne,
     stack: [
@@ -76,13 +75,12 @@ export const projects: Project[] = [
     title: "Velocia",
     category: "Mobility Platform",
     summary:
-      "A ride-sharing experience with bold dark UI, brand-forward messaging, and a frictionless onboarding flow.",
+      "A ride-sharing experience with bold dark UI, trust-forward messaging, and a frictionless onboarding path.",
     description:
-      "Velocia is a ride-sharing product concept that emphasizes brand clarity, instant trust, and a streamlined onboarding experience. The interface uses depth, contrast, and motion-ready sections to communicate reliability and speed.",
+      "Velocia is a ride-sharing concept that emphasizes brand clarity, instant trust, and a streamlined onboarding experience. The interface uses depth, contrast, and motion-ready sections to communicate reliability and speed.",
     highlights: [
       "Cohesive dark theme with strong contrast",
       "Trust-driven hero messaging and layout",
-      "Motion-ready components for engagement",
     ],
     image: projectTwo,
     stack: [
@@ -113,13 +111,12 @@ export const projects: Project[] = [
     title: "Shelfy",
     category: "Library Dashboard",
     summary:
-      "A clean operational dashboard for library management with analytics, activity tracking, and admin workflows.",
+      "A clean operations dashboard for library management with analytics, activity tracking, and admin workflows.",
     description:
-      "Shelfy is a library management dashboard that brings clarity to daily operations with stats, activity logs, and structured workflows. The UI is designed to surface key information quickly while keeping actions intuitive.",
+      "Shelfy is a library management dashboard that brings clarity to daily operations with stats, activity logs, and structured workflows. The UI surfaces key information quickly while keeping actions intuitive.",
     highlights: [
-      "Data-dense UI with clear readability",
-      "Reusable cards and stat-driven layout",
-      "Streamlined actions for daily ops",
+      "Data-dense UI with clear hierarchy",
+      "Reusable cards and daily workflow actions",
     ],
     image: projectThree,
     stack: [
