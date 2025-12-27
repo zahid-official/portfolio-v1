@@ -1,13 +1,22 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import skillIcon from "@/assets/icons/skill-icon.svg";
 import shadcn from "@/assets/icons/shadcn.png";
 import zod from "@/assets/icons/zod.png";
 import jwt from "@/assets/icons/jwt.png";
 import mongoose from "@/assets/icons/mongoose.png";
+import daisy from "@/assets/icons/daisy.png";
+import motion from "@/assets/icons/motion.png";
+import tanstack from "@/assets/icons/tanstack.png";
+import stripe from "@/assets/icons/stripe.png";
+import cloudinary from "@/assets/icons/cloudinary.png";
+import passport from "@/assets/icons/passport.png";
+import neondb from "@/assets/icons/neondb.png";
+import reactRouter from "@/assets/icons/react-router.png";
 
 type Skill = {
   name: string;
   icon?: string;
+  src?: StaticImageData;
   badge?: string;
 };
 
@@ -19,12 +28,13 @@ type SkillArea = {
 };
 
 const skillAreas: SkillArea[] = [
+  // Product UI
   {
     title: "Product UI",
     summary: "Polished interfaces with a design-system mindset.",
     highlights: [
-      "Design tokens and component systems",
-      "Responsive layouts with clean hierarchy",
+      "Design systems and reusable components",
+      "Responsive layouts with strong hierarchy",
       "Accessible, production-ready UI",
     ],
     skills: [
@@ -32,17 +42,21 @@ const skillAreas: SkillArea[] = [
       { name: "CSS", icon: "css" },
       { name: "Tailwind", icon: "tailwind" },
       { name: "Bootstrap", icon: "bootstrap" },
-      { name: "shadcn/ui", badge: "UI" },
+      { name: "Shadcn", src: shadcn },
+      { name: "Daisy UI", src: daisy },
+      { name: "Motion", src: motion },
       { name: "Figma", icon: "figma" },
     ],
   },
+
+  // Frontend
   {
     title: "Frontend Apps",
     summary: "Interactive, performant React and Next.js builds.",
     highlights: [
       "Type-safe state and data flows",
-      "Rendering strategies that scale",
-      "Motion and micro-interactions",
+      "Rendering strategies for speed",
+      "Delightful motion and feedback",
     ],
     skills: [
       { name: "JavaScript", icon: "js" },
@@ -50,38 +64,52 @@ const skillAreas: SkillArea[] = [
       { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextjs" },
       { name: "Redux", icon: "redux" },
+      { name: "Tanstack", src: tanstack },
+      { name: "React Router", src: reactRouter },
+      { name: "Git", icon: "git" },
+      { name: "Github", icon: "github" },
     ],
   },
+
+  // Backend
   {
     title: "Backend & APIs",
     summary: "Secure services, validation, and integrations.",
     highlights: [
-      "RESTful API design and auth",
-      "Schema validation and safeguards",
+      "Auth, security, and middleware patterns",
+      "Validation-first API contracts",
       "Reliable integrations and workflows",
     ],
     skills: [
       { name: "Node.js", icon: "nodejs" },
       { name: "Express", icon: "express" },
       { name: "Firebase", icon: "firebase" },
-      { name: "JWT", badge: "JWT" },
-      { name: "Zod", badge: "ZOD" },
+      { name: "JWT", src: jwt },
+      { name: "Zod", src: zod },
+      { name: "Stripe", src: stripe },
+      { name: "Cloudinary", src: cloudinary },
+      { name: "Passport", src: passport },
+      { name: "Postman", icon: "postman" },
     ],
   },
+
+  // Database
   {
-    title: "Data & Delivery",
-    summary: "Resilient data layers and clean deployments.",
+    title: "Data Platform",
+    summary: "Databases, modeling, and caching that scale.",
     highlights: [
       "Relational and document modeling",
-      "ORM workflows and caching",
-      "Deployment-ready delivery",
+      "ORM workflows and performance",
+      "Caching and realtime services",
     ],
     skills: [
       { name: "MongoDB", icon: "mongodb" },
+      { name: "Mongoose", src: mongoose },
       { name: "Postgres", icon: "postgres" },
       { name: "Prisma", icon: "prisma" },
       { name: "Redis", icon: "redis" },
-      { name: "Mongoose", icon: "mongoose" },
+      { name: "Supabase", icon: "supabase" },
+      { name: "NeonDB", src: neondb },
     ],
   },
 ];
@@ -137,7 +165,7 @@ const Skills = () => {
                       {area.summary}
                     </p>
                   </div>
-                  <span className="rounded-full border border-background/10 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-background/50 transition-colors duration-300 group-hover:border-background/25">
+                  <span className="rounded-full w-25 text-center border border-background/10 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-background/50 transition-colors duration-300 group-hover:border-background/25">
                     {area.skills.length} Tools
                   </span>
                 </div>
@@ -161,17 +189,26 @@ const Skills = () => {
                     {area.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className="flex items-center gap-2 rounded-full border border-background/10 bg-black/40 px-3 py-2 text-xs font-medium text-background/80 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-background/30 hover:bg-background/10 hover:text-background"
+                        className="flex cursor-pointer items-center gap-2 rounded-full border border-background/10 bg-black/40 px-3 py-2 text-xs font-medium text-background/80 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-background/30 hover:bg-background/10 hover:text-background"
                       >
-                        {skill.icon ? (
+                        {skill.src ? (
+                          <span className="grid h-6 w-6 place-items-center rounded-full bg-background/10 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
+                            <Image
+                              src={skill.src}
+                              alt={`${skill.name} icon`}
+                              className="h-5 w-5 rounded-full object-contain"
+                              width={20}
+                              height={20}
+                            />
+                          </span>
+                        ) : skill.icon ? (
                           <span className="grid h-6 w-6 place-items-center rounded-full bg-background/10 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
                             <Image
                               src={`https://skillicons.dev/icons?i=${skill.icon}`}
                               alt={`${skill.name} icon`}
-                              className="h-5 w-5 rounded-full object-center"
+                              className="h-5 w-5 rounded-full"
                               width={20}
                               height={20}
-                              unoptimized
                             />
                           </span>
                         ) : (
