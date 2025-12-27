@@ -52,7 +52,7 @@ const Navbar = () => {
     const header = document.querySelector("header");
     const headerOffset = header?.getBoundingClientRect().height ?? 0;
     const targetTop =
-      target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+      target.getBoundingClientRect().top + window.scrollY - headerOffset;
     const nextTop = Math.max(0, targetTop);
 
     scrollAnimationRef.current?.stop();
