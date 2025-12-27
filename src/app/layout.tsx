@@ -46,7 +46,8 @@ const barlowCondensed = Barlow_Condensed({
 
 export const metadata: Metadata = {
   title: "Zahid | Portfolio",
-  description: "Zahid's personal portfolio showcasing projects, skills and contact information.",
+  description:
+    "Zahid's personal portfolio showcasing projects, skills and contact information.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -60,15 +61,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${suisse.variable} ${barlowCondensed.variable} antialiased`}>
+      <body
+        className={`${suisse.variable} ${barlowCondensed.variable} antialiased`}
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
           {children}
-          <Toaster richColors/>
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>
