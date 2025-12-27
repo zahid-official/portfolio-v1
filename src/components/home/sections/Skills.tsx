@@ -138,7 +138,7 @@ const Skills = () => {
           <h3 className="sm:text-5xl text-4xl title-font mt-3">
             <span className="font-bold">Skill </span> Set
           </h3>
-          <p className="mt-4 text-sm sm:text-base text-background/70 max-w-3xl mx-auto">
+          <p className="mt-1 text-sm sm:text-base text-background/70 max-w-3xl mx-auto">
             A modern toolkit built for real products. I focus on clean UI,
             scalable frontend architecture, and reliable backend systems.
           </p>
