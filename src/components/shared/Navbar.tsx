@@ -10,7 +10,12 @@ import {
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { animate } from "motion";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { type MouseEvent, useRef, useState } from "react";
@@ -30,6 +35,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrollAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 32);
@@ -75,6 +81,13 @@ const Navbar = () => {
 
   return (
     <motion.header
+      initial={shouldReduceMotion ? false : { y: -18, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : { duration: 0.9, delay: 0.05, ease: [0.16, 1, 0.3, 1] }
+      }
       className={cn(
         "fixed top-0 left-0 right-0 z-40  backdrop-blur",
         isScrolled ? "shadow-sm bg-white/92" : ""
