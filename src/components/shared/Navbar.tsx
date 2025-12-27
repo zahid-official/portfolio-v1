@@ -9,10 +9,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { animate } from "motion";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { type MouseEvent, useRef, useState } from "react";
 
 // Navitems
 const navItems = [
@@ -28,10 +29,49 @@ const Navbar = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const scrollAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 32);
   });
+
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.includes("#")) {
+      return;
+    }
+
+    const hash = href.slice(href.indexOf("#"));
+    const target = document.querySelector(hash);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const header = document.querySelector("header");
+    const headerOffset = header?.getBoundingClientRect().height ?? 0;
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+    const nextTop = Math.max(0, targetTop);
+
+    scrollAnimationRef.current?.stop();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.scrollTo({ top: nextTop, behavior: "auto" });
+    } else {
+      scrollAnimationRef.current = animate(window.scrollY, nextTop, {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: (latest) => {
+          window.scrollTo(0, latest);
+        },
+      });
+    }
+
+    window.history.replaceState(null, "", hash);
+    setIsMenuOpen(false);
+  };
 
   return (
     <motion.header
@@ -56,6 +96,7 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
+              onClick={(event) => handleNavClick(event, item.href)}
               className="group relative overflow-hidden"
             >
               <span className="block transition-transform duration-300 group-hover:-translate-y-full">
@@ -107,7 +148,10 @@ const Navbar = () => {
                   className="group relative block w-full cursor-pointer overflow-hidden text-center text-sm font-medium"
                   asChild
                 >
-                  <Link href={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={(event) => handleNavClick(event, item.href)}
+                  >
                     <span className="grid w-full place-items-center overflow-hidden">
                       <span className="col-start-1 row-start-1 transition-transform duration-300 group-hover:-translate-y-full">
                         {item.label}
