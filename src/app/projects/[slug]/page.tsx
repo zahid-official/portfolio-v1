@@ -114,6 +114,40 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
           </div>
         </div>
 
+        {project.detailSections.length ? (
+          <div className="mt-16">
+            <p className="text-[11px] uppercase tracking-[0.35em] text-foreground/50">
+              Project Scope
+            </p>
+            <div className="mt-6 grid gap-6 lg:grid-cols-3">
+              {project.detailSections.map((section) => (
+                <div
+                  key={`${section.eyebrow}-${section.title}`}
+                  className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,15,15,0.25)]"
+                >
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-foreground/50">
+                    {section.eyebrow}
+                  </p>
+                  <h2 className="mt-3 text-lg font-semibold">
+                    {section.title}
+                  </h2>
+                  <p className="mt-2 text-sm text-foreground/70">
+                    {section.description}
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-foreground/70">
+                    {section.bullets.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/40" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <div className="mt-16 grid gap-8 lg:grid-cols-2">
           <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,15,15,0.25)]">
             <p className="text-[11px] uppercase tracking-[0.35em] text-foreground/50">
