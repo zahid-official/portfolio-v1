@@ -119,7 +119,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-black py-36 text-background"
+      className="relative overflow-hidden bg-black sm:py-34 py-26 text-background"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 left-12 h-72 w-72 rounded-full bg-background/5 blur-3xl" />

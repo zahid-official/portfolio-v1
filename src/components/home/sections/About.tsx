@@ -1,7 +1,7 @@
 // About Component
 const About = () => {
   return (
-    <section id="about" className="pt-8 pb-36">
+    <section id="about" className="sm:pt-8 pt-4 sm:pb-34 pb-26">
       <div className="container mx-auto max-w-7xl px-5">
         <div className="container mx-auto">
           <h4 className="text-sm uppercase text-[#606060] sm:text-base">

@@ -82,7 +82,7 @@ const Footer = () => {
   return (
     <footer id="contact">
       {showTop && (
-        <div className="pb-8 pt-12 max-w-7xl w-full mx-auto">
+        <div className="sm:pb-8 pb-12 pt-12 max-w-7xl w-full mx-auto">
           <div className="container mx-auto flex flex-col items-start justify-between gap-6 px-4 md:flex-row md:items-end">
             <div>
               <h4 className="uppercase text-sm">
@@ -114,7 +114,7 @@ const Footer = () => {
 
       <div className="flex flex-col text-white sm:flex-row font-condensed">
         {/* left */}
-        <div className="flex-1 bg-black/98 py-28 px-6">
+        <div className="flex-1 bg-black/98 sm:py-28 py-14 px-6">
           <div className="mx-auto max-w-sm sm:max-w-70">
             {/* logo */}
             <div className="navbar-start">
@@ -200,7 +200,7 @@ const Footer = () => {
         </div>
 
         {/* right */}
-        <div className="flex-1 bg-[#090a0e] pt-14 pb-28 px-6">
+        <div className="flex-1 bg-[#090a0e] sm:pt-14 sm:pb-28 pb-14 px-6">
           <div className="mx-auto max-w-sm">
             <h3 className="mt-14 text-3xl uppercase">
               <span className="inline-block bg-[#21252c] px-2 py-0.5 font-semibold">

@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 // Projects Component
 const Projects = () => {
   return (
-    <section id="projects" className="relative overflow-hidden bg-background pt-32 pb-20">
+    <section id="projects" className="relative overflow-hidden bg-background sm:pt-30 pt-22 sm:pb-16 pb-12">
       <div className="container relative mx-auto max-w-7xl px-5">
         {/* Title */}
         <div className="text-center text-foreground">
@@ -31,14 +31,14 @@ const Projects = () => {
         </div>
 
         {/* Projects */}
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 flex flex-wrap justify-center items-center gap-8 ">
           {projects.map((project, index) => {
             const cardNumber = String(index + 1).padStart(2, "0");
 
             return (
               <article
                 key={project.slug}
-                className="group relative pb-8 rounded-2xl border border-black/10 bg-white p-6 shadow-[0_20px_50px_-36px_rgba(15,15,15,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_28px_70px_-40px_rgba(15,15,15,0.45)]"
+                className="group relative pb-8 rounded-2xl border border-black/10 bg-white p-6 shadow-[0_20px_50px_-36px_rgba(15,15,15,0.35)] transition-all duration-300 ease-out max-w-sm hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_28px_70px_-40px_rgba(15,15,15,0.45)]"
               >
                 <div className="relative rounded-xl border h-48 overflow-hidden sm:h-56">
                   <Image
