@@ -6,14 +6,15 @@ import { projects, getProjectBySlug } from "@/data/projects";
 import ProjectStack from "@/components/projects/ProjectStack";
 
 type ProjectPageProps = {
-  params: { slug: string };
+  params: { slug: string } | Promise<{ slug: string }>;
 };
 
 export const generateStaticParams = () =>
   projects.map((project) => ({ slug: project.slug }));
 
-export const generateMetadata = ({ params }: ProjectPageProps) => {
-  const project = getProjectBySlug(params.slug);
+export const generateMetadata = async ({ params }: ProjectPageProps) => {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     return {
@@ -27,8 +28,9 @@ export const generateMetadata = ({ params }: ProjectPageProps) => {
   };
 };
 
-const ProjectPage = ({ params }: ProjectPageProps) => {
-  const project = getProjectBySlug(params.slug);
+const ProjectPage = async ({ params }: ProjectPageProps) => {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
@@ -37,6 +39,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
   return (
     <section className="bg-background text-foreground">
       <div className="container mx-auto max-w-6xl px-5 py-24">
+        {/* Back */}
         <Link
           href="/#projects"
           className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-foreground/60 transition-colors hover:text-foreground"
@@ -46,10 +49,11 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
         </Link>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          {/* Details */}
           <div>
-            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">
+            <span className="rounded-full border border-black/10 bg-black/3 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-foreground/60">
               {project.category}
-            </p>
+            </span>
             <h1 className="mt-3 text-3xl font-semibold sm:text-4xl">
               {project.title}
             </h1>
@@ -62,20 +66,31 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
                 href={project.links.live}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-black/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black hover:text-white"
+                className="group/cta inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] bg-foreground text-background transition-all duration-200 hover:border-black/25 hover:bg-secondary hover:text-foreground"
               >
-                Live Project
-                <ArrowUpRight className="size-4" />
+                Visit Live
+                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
               </Link>
               <Link
                 href={project.links.clientRepo}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-black/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black hover:text-white"
+                className="group/cta inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 transition-all duration-200 hover:border-black/25 hover:bg-black/5 hover:text-foreground"
               >
                 Client Repo
-                <ArrowUpRight className="size-4" />
+                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
               </Link>
+              {project.links.serverRepo ? (
+                <Link
+                  href={project.links.serverRepo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group/cta inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 transition-all duration-200 hover:border-black/25 hover:bg-black/5 hover:text-foreground"
+                >
+                  Server Repo
+                  <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
+                </Link>
+              ) : null}
             </div>
 
             <div className="mt-8">
@@ -86,7 +101,8 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
             </div>
           </div>
 
-          <div className="relative min-h-[280px] overflow-hidden rounded-3xl border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(15,15,15,0.35)] sm:min-h-[360px]">
+          {/* Image */}
+          <div className="relative min-h-70 overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(15,15,15,0.35)] sm:min-h-90">
             <Image
               src={project.image}
               alt={`${project.title} preview`}
@@ -103,9 +119,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
             <p className="text-[11px] uppercase tracking-[0.35em] text-foreground/50">
               Challenges
             </p>
-            <h2 className="mt-3 text-xl font-semibold">
-              What I had to solve
-            </h2>
+            <h2 className="mt-3 text-xl font-semibold">What I had to solve</h2>
             <ul className="mt-4 space-y-3 text-sm text-foreground/70">
               {project.challenges.map((item) => (
                 <li key={item} className="flex gap-3">

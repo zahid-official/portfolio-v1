@@ -25,6 +25,7 @@ export type Project = {
   links: {
     live: string;
     clientRepo: string;
+    serverRepo?: string;
   };
   challenges: string[];
   improvements: string[];
@@ -58,6 +59,7 @@ export const projects: Project[] = [
     links: {
       live: "https://lorvic-official.vercel.app/",
       clientRepo: "https://github.com/zahid-official/milestone-18-client",
+      serverRepo: "https://github.com/zahid-official/milestone-18-server",
     },
     challenges: [
       "Keeping a clean hero split layout without breaking visual hierarchy on smaller screens.",
@@ -94,6 +96,7 @@ export const projects: Project[] = [
     links: {
       live: "https://velocia-official.vercel.app/",
       clientRepo: "https://github.com/zahid-official/milestone-17-client",
+      serverRepo: "https://github.com/zahid-official/milestone-17-server",
     },
     challenges: [
       "Creating depth in a dark UI without losing contrast and readability.",
@@ -130,6 +133,7 @@ export const projects: Project[] = [
     links: {
       live: "https://shelfy-official.vercel.app/",
       clientRepo: "https://github.com/zahid-official/milestone-16-client",
+      serverRepo: "https://github.com/zahid-official/milestone-16-server",
     },
     challenges: [
       "Organizing dense data while keeping the layout clean and scannable.",

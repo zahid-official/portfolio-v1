@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 // Projects Component
 const Projects = () => {
   return (
-    <section id="projects" className="relative overflow-hidden bg-background sm:pt-30 pt-22 sm:pb-16 pb-12">
+    <section id="projects" className="relative overflow-hidden bg-background sm:pt-30 pt-22 sm:pb-20 pb-12">
       <div className="container relative mx-auto max-w-7xl px-5">
         {/* Title */}
         <div className="text-center text-foreground">
@@ -52,7 +52,7 @@ const Projects = () => {
                 </div>
 
                 <div className="mt-6 flex items-center justify-between gap-4 text-foreground">
-                  <span className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-foreground/60">
+                  <span className="rounded-full border border-black/10 bg-black/3 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-foreground/60">
                     {project.category}
                   </span>
                   <span className="text-4xl font-semibold text-foreground/10">
