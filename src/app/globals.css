@@ -178,8 +178,7 @@
 
   .social-rail__label {
     font-size: 0.875rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
 }

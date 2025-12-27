@@ -103,7 +103,7 @@ const Hero = () => {
             </li>
           </ul>
           <div className="social-rail__divider" />
-          <p className="social-rail__label vertical-text">Follow us</p>
+          <p className="social-rail__label vertical-text">Connect on</p>
         </div>
       </div>
     </header>
