@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import projectIcon from "@/assets/icons/project-icon.svg";
 import { projects } from "@/data/projects";
-import ProjectStack from "@/components/projects/ProjectStack";
 
 // Projects Component
 const Projects = () => {
@@ -63,21 +62,26 @@ const Projects = () => {
                   {project.summary}
                 </p>
 
-                <div className="mt-4">
-                  <p className="text-[11px] uppercase tracking-[0.35em] text-foreground/50">
-                    Stack
-                  </p>
-                  <ProjectStack stack={project.stack.slice(0, 4)} />
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href={project.links.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black hover:text-white"
+                    aria-label={`Visit live site for ${project.title}`}
+                  >
+                    Visit Live
+                    <ArrowUpRight className="size-4" />
+                  </Link>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black/5 hover:text-foreground"
+                    aria-label={`View details for ${project.title}`}
+                  >
+                    View Details
+                    <ArrowUpRight className="size-4" />
+                  </Link>
                 </div>
-
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black hover:text-white"
-                  aria-label={`View details for ${project.title}`}
-                >
-                  View Details
-                  <ArrowUpRight className="size-4" />
-                </Link>
               </div>
             </article>
           ))}
