@@ -12,10 +12,10 @@ const Hero = () => {
   return (
     <header
       id="home"
-      className="bg-bottom-left md:pt-44 pt-28 pb-36"
+      className="bg-bottom-left 2xl:pt-48 md:pt-36 pt-28 2xl:pb-36 pb-20"
       style={{ backgroundImage: `url(${background.src})` }}
     >
-      <div className="mx-auto max-w-7xl px-5 text-center">
+      <div className="mx-auto container max-w-7xl px-5 text-center">
         {/* img */}
         <div className="flex justify-center">
           <Image
@@ -27,13 +27,13 @@ const Hero = () => {
 
         {/* text */}
         <div>
-          <p className="mt-5 text-xl sm:mb-6 mb-4">
-            Hi! I&apos;m Zahidul Islam
-          </p>
-          <h1 className="text-4xl font-medium sm:text-6xl">
+          <p className="mt-5 text-xl">Hi! I&apos;m Zahidul Islam</p>
+
+          <h1 className="text-4xl sm:my-6 my-4 font-medium sm:text-6xl">
             Web Application Developer <br /> focused on impact.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-black/70 sm:text-base">
+
+          <p className="mx-auto max-w-2xl text-sm text-black/70 sm:text-base">
             As a web application developer, I craft modern web solutions that
             prioritize architecture, performance and usability. I transform
             concepts into impactful web experiences that{" "}
@@ -42,7 +42,7 @@ const Hero = () => {
         </div>
 
         {/* button */}
-        <div className="sm:mt-10 mt-5 flex flex-wrap justify-center gap-2.5">
+        <div className="sm:mt-10 mt-7 flex flex-wrap justify-center gap-2.5">
           <Link href="#contact">
             <button
               className={cn(
@@ -66,7 +66,7 @@ const Hero = () => {
         </div>
 
         {/* social */}
-        <div className="social-rail fixed bottom-16 right-3 hidden items-center lg:flex">
+        <div className="social-rail fixed bottom-16 right-3 flex flex-col items-center gap-4 max-lg:hidden z-20">
           <ul className="social-rail__list">
             <li>
               <Link

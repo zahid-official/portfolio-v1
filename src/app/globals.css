@@ -143,13 +143,8 @@
   }
 
   .social-rail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
     color: #fff;
     mix-blend-mode: exclusion;
-    z-index: 20;
   }
 
   .social-rail__list {
