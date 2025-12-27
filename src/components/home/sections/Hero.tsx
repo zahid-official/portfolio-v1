@@ -1,7 +1,10 @@
+"use client";
+
 import background from "@/assets/images/background.png";
 import profile from "@/assets/images/profile.jpeg";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
@@ -9,24 +12,62 @@ import { FaDownload, FaFacebookF } from "react-icons/fa6";
 
 // Hero Component
 const Hero = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.12,
+      },
+    },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 14 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+  const imageVariants = {
+    hidden: { opacity: 0, y: 10, scale: 0.96 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.9,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
-    <header
+    <motion.header
       id="home"
       className="bg-bottom-left 2xl:pt-48 md:pt-36 pt-28 2xl:pb-36 pb-20"
       style={{ backgroundImage: `url(${background.src})` }}
+      variants={containerVariants}
+      initial={shouldReduceMotion ? false : "hidden"}
+      animate="show"
     >
       <div className="mx-auto container max-w-7xl px-5 text-center">
         {/* img */}
-        <div className="flex justify-center">
+        <motion.div className="flex justify-center" variants={imageVariants}>
           <Image
             src={profile}
             alt="Zahidul Islam"
             className="h-36 w-36 rounded-full border border-gray-100 object-cover sm:h-40 sm:w-40"
           />
-        </div>
+        </motion.div>
 
         {/* text */}
-        <div>
+        <motion.div variants={itemVariants}>
           <p className="mt-5 text-xl">Hi! I&apos;m Zahidul Islam</p>
 
           <h1 className="text-4xl sm:my-6 my-4 font-medium sm:text-6xl">
@@ -39,10 +80,13 @@ const Hero = () => {
             concepts into impactful web experiences that{" "}
             <br className="max-lg:hidden" /> solve problems and deliver value.
           </p>
-        </div>
+        </motion.div>
 
         {/* button */}
-        <div className="sm:mt-10 mt-7 flex flex-wrap justify-center gap-2.5">
+        <motion.div
+          className="sm:mt-10 mt-7 flex flex-wrap justify-center gap-2.5"
+          variants={itemVariants}
+        >
           <Link href="#contact">
             <button
               className={cn(
@@ -63,10 +107,13 @@ const Hero = () => {
             My Resume
             <FaDownload size={18} />
           </Link>
-        </div>
+        </motion.div>
 
         {/* social */}
-        <div className="social-rail fixed bottom-16 right-3 flex flex-col items-center gap-4 max-lg:hidden z-20">
+        <motion.div
+          className="social-rail fixed bottom-16 right-3 flex flex-col items-center gap-4 max-lg:hidden z-20"
+          variants={itemVariants}
+        >
           <ul className="social-rail__list">
             <li>
               <Link
@@ -104,9 +151,9 @@ const Hero = () => {
           </ul>
           <div className="social-rail__divider" />
           <p className="social-rail__label vertical-text">Connect on</p>
-        </div>
+        </motion.div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
