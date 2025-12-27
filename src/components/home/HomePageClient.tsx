@@ -9,8 +9,8 @@ import Skills from "./sections/Skills";
 const HomePageClient = () => {
   return (
     <div className="min-h-screen">
+      <main>
       <Navbar />
-      <main className="pt-24">
         <Hero />
         <About />
         <Skills />

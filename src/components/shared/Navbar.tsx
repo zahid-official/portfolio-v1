@@ -36,8 +36,8 @@ const Navbar = () => {
   return (
     <motion.header
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 bg-white/92 backdrop-blur",
-        isScrolled ? "shadow-sm" : ""
+        "fixed top-0 left-0 right-0 z-40  backdrop-blur",
+        isScrolled ? "shadow-sm bg-white/92" : ""
       )}
     >
       <div className="mx-auto w-full max-w-7xl px-3 py-6 flex items-center gap-2.5 justify-between">
