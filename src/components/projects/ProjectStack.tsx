@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import type { Tech } from "@/data/projects";
 
@@ -11,7 +13,7 @@ const ProjectStack = ({ stack }: ProjectStackProps) => {
       {stack.map((tech) => (
         <div
           key={tech.name}
-          className="flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-xs font-medium text-foreground/70 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-foreground"
+          className="flex cursor-pointer items-center gap-2 rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-xs font-medium text-foreground/70 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/10 hover:text-foreground"
         >
           {tech.src ? (
             <span className="grid h-6 w-6 place-items-center rounded-full bg-white shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)]">
