@@ -53,8 +53,9 @@ const Hero = () => {
       className="bg-bottom-left 2xl:pt-48 md:pt-36 pt-28 2xl:pb-36 pb-20"
       style={{ backgroundImage: `url(${background.src})` }}
       variants={containerVariants}
-      initial={shouldReduceMotion ? false : "hidden"}
-      animate="show"
+      initial={shouldReduceMotion ? "show" : "hidden"}
+      whileInView="show"
+      viewport={{ once: true, amount: 0.6 }}
     >
       <div className="mx-auto container max-w-7xl px-5 text-center">
         {/* img */}
