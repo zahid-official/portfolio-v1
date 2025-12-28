@@ -140,6 +140,7 @@ const Navbar = () => {
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
+                id="mobile-nav-trigger"
                 className="hidden size-9 items-center justify-center rounded-full border cursor-pointer border-black/10 bg-white/80 transition-all max-md:inline-flex"
                 aria-expanded={isMenuOpen}
                 aria-label="Toggle menu"

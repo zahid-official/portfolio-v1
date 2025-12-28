@@ -1,3 +1,5 @@
+"use client";
+
 import Image, { type StaticImageData } from "next/image";
 import skillIcon from "@/assets/icons/skill-icon.svg";
 import shadcn from "@/assets/icons/shadcn.png";
@@ -5,13 +7,14 @@ import zod from "@/assets/icons/zod.png";
 import jwt from "@/assets/icons/jwt.png";
 import mongoose from "@/assets/icons/mongoose.png";
 import daisy from "@/assets/icons/daisy.png";
-import motion from "@/assets/icons/motion.png";
+import motionIcon from "@/assets/icons/motion.png";
 import tanstack from "@/assets/icons/tanstack.png";
 import stripe from "@/assets/icons/stripe.png";
 import cloudinary from "@/assets/icons/cloudinary.png";
 import passport from "@/assets/icons/passport.png";
 import neondb from "@/assets/icons/neondb.png";
 import reactRouter from "@/assets/icons/react-router.png";
+import { motion, useReducedMotion } from "motion/react";
 
 type Skill = {
   name: string;
@@ -44,7 +47,7 @@ const skillAreas: SkillArea[] = [
       { name: "Bootstrap", icon: "bootstrap" },
       { name: "Shadcn", src: shadcn },
       { name: "Daisy UI", src: daisy },
-      { name: "Motion", src: motion },
+      { name: "Motion", src: motionIcon },
       { name: "Figma", icon: "figma" },
     ],
   },
@@ -116,10 +119,47 @@ const skillAreas: SkillArea[] = [
 
 // Skills Component
 const Skills = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const headerVariants = {
+    hidden: { opacity: 0, y: 16 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+  const gridVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.12,
+      },
+    },
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 18, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
-    <section
+    <motion.section
       id="skills"
       className="relative overflow-hidden bg-black sm:py-34 py-26 text-background"
+      initial={shouldReduceMotion ? "show" : "hidden"}
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 left-12 h-72 w-72 rounded-full bg-background/5 blur-3xl" />
@@ -128,7 +168,7 @@ const Skills = () => {
       </div>
       <div className="container relative mx-auto max-w-7xl px-5">
         {/* Title */}
-        <div className="text-center">
+        <motion.div className="text-center" variants={headerVariants}>
           <div className="flex flex-col items-center gap-2">
             <Image src={skillIcon} className="ml-1 size-10" alt="skill icon" />
             <span className="text-xs uppercase tracking-[0.35em] text-background/70">
@@ -142,14 +182,18 @@ const Skills = () => {
             A modern toolkit built for real products. I focus on clean UI,
             scalable frontend architecture, and reliable backend systems.
           </p>
-        </div>
+        </motion.div>
 
         {/* Skills */}
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <motion.div
+          className="mt-12 grid gap-6 md:grid-cols-2"
+          variants={gridVariants}
+        >
           {skillAreas.map((area) => (
-            <div
+            <motion.div
               key={area.title}
               className="group relative overflow-hidden rounded-2xl border border-background/10 bg-[#0b0b0b] p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-background/25 hover:shadow-[0_32px_90px_-60px_rgba(255,255,255,0.3)]"
+              variants={cardVariants}
             >
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.07),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="relative">
@@ -223,11 +267,11 @@ const Skills = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
