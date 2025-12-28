@@ -16,9 +16,11 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { motion, useReducedMotion } from "motion/react";
 
 // Footer Component
 const Footer = () => {
+  const shouldReduceMotion = useReducedMotion();
   const pathname = usePathname();
   const showTop = pathname === "/";
   const [formValues, setFormValues] = useState({ email: "", message: "" });
@@ -79,10 +81,60 @@ const Footer = () => {
     }, 900);
   };
 
+  const headerVariants = {
+    hidden: { opacity: 0, y: 18 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+  const contentVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        delayChildren: 0.12,
+        staggerChildren: 0.14,
+      },
+    },
+  };
+  const panelVariants = {
+    hidden: { opacity: 0, y: 18, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+  const copyrightVariants = {
+    hidden: { opacity: 0, y: 12 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
     <footer id="contact">
       {showTop && (
-        <div className="sm:pb-8 pb-12 pt-12 max-w-7xl w-full mx-auto">
+        <motion.div
+          className="sm:pb-8 pb-12 pt-12 max-w-7xl w-full mx-auto"
+          variants={headerVariants}
+          initial={shouldReduceMotion ? "show" : "hidden"}
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="container mx-auto flex flex-col items-start justify-between gap-6 px-4 md:flex-row md:items-end">
             <div>
               <h4 className="uppercase text-sm">
@@ -109,13 +161,19 @@ const Footer = () => {
               </button>
             </Link>
           </div>
-        </div>
+        </motion.div>
       )}
 
-      <div className="flex flex-col text-white sm:flex-row font-condensed">
-        {/* left */}
+      <motion.div
+        className="flex flex-col text-white sm:flex-row font-condensed"
+        variants={contentVariants}
+        initial={shouldReduceMotion ? "show" : "hidden"}
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+      >
+        {/* left Column */}
         <div className="flex-1 bg-black/98 sm:py-28 py-14 px-6">
-          <div className="mx-auto max-w-sm sm:max-w-70">
+          <motion.div className="mx-auto max-w-sm sm:max-w-70" variants={panelVariants}>
             {/* logo */}
             <div className="navbar-start">
               {/* Logo */}
@@ -196,12 +254,12 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* right */}
+        {/* right Column */}
         <div className="flex-1 bg-[#090a0e] sm:pt-14 sm:pb-28 pb-14 px-6">
-          <div className="mx-auto max-w-sm">
+          <motion.div className="mx-auto max-w-sm" variants={panelVariants}>
             <h3 className="mt-14 text-3xl uppercase">
               <span className="inline-block bg-[#21252c] px-2 py-0.5 font-semibold">
                 Leave
@@ -255,13 +313,21 @@ const Footer = () => {
                 </button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* copyright */}
       <div className="bg-[#0c0e13] py-8 text-center text-lg font-condensed text-white">
-        © This Portfolio is develop by Zahidul Islam.
+        <motion.span
+          className="inline-block"
+          variants={copyrightVariants}
+          initial={shouldReduceMotion ? "show" : "hidden"}
+          whileInView="show"
+          viewport={{ once: true, amount: 0.6 }}
+        >
+          © This Portfolio is develop by Zahidul Islam.
+        </motion.span>
       </div>
     </footer>
   );
