@@ -41,7 +41,10 @@ const Navbar = () => {
     setIsScrolled(latest > 32);
   });
 
-  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     if (!href.includes("#")) {
       return;
     }
@@ -90,7 +93,7 @@ const Navbar = () => {
       }
       className={cn(
         "fixed top-0 left-0 right-0 z-40  backdrop-blur",
-        isScrolled ? "shadow-sm bg-white/92" : ""
+        isScrolled ? "shadow-sm bg-white/92" : "",
       )}
     >
       <div className="mx-auto w-full max-w-7xl px-3 py-6 flex items-center gap-2.5 justify-between">
@@ -102,7 +105,7 @@ const Navbar = () => {
         {/* Navbar */}
         <nav
           className={cn(
-            "max-md:hidden flex items-center justify-self-center gap-7 rounded-full border border-black/10 px-8 py-3 text-sm font-medium transition-all duration-300"
+            "max-md:hidden flex items-center justify-self-center gap-7 rounded-full border border-black/10 px-8 py-3 text-sm font-medium transition-all duration-300",
           )}
         >
           {navItems.map((item) => (
@@ -124,10 +127,14 @@ const Navbar = () => {
 
         {/* Let's Talk */}
         <div className="flex items-center gap-2">
-          <Link href="mailto:zahid.official8@gmail.com">
+          <Link
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=zahid.official8@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+          >
             <button
               className={cn(
-                "group inline-flex items-center justify-self-end gap-2 border border-black/10 px-6 py-3 text-sm font-semibold transition-colors duration-200 max-md:hidden cursor-pointer hover:bg-foreground hover:text-background"
+                "group inline-flex items-center justify-self-end gap-2 border border-black/10 px-6 py-3 text-sm font-semibold transition-colors duration-200 max-md:hidden cursor-pointer hover:bg-foreground hover:text-background",
               )}
             >
               Let&apos;s talk

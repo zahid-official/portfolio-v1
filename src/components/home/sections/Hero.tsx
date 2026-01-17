@@ -83,24 +83,30 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        {/* button */}
+        {/* buttons */}
         <motion.div
           className="sm:mt-10 mt-7 flex flex-wrap justify-center gap-2.5"
           variants={itemVariants}
         >
-          <Link href="#contact">
+          {/* Email Btn */}
+          <Link
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=zahid.official8@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+          >
             <button
               className={cn(
-                "group inline-flex items-center justify-self-end gap-1.5 border border-black/10 px-8 py-3 font-semibold transition-colors duration-200 cursor-pointer rounded-full bg-foreground text-background hover:bg-secondary hover:text-foreground"
+                "group inline-flex items-center justify-self-end gap-1.5 border border-black/10 px-8 py-3 font-semibold transition-colors duration-200 cursor-pointer rounded-full bg-foreground text-background hover:bg-secondary hover:text-foreground",
               )}
             >
-              Contact Me
+              Email Me
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1.5" />
             </button>
           </Link>
 
+          {/* Resume Btn */}
           <Link
-            href="https://drive.google.com/file/d/16-vdGp3w0AurEBYW8OFlDNqaVqm4qRFH/view?usp=drive_link"
+            href="/assets/resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="group inline-flex items-center justify-self-end gap-1.5 border border-black/10 px-8 py-3 font-semibold transition-colors duration-200 cursor-pointer rounded-full bg-secondary text-foreground hover:bg-foreground hover:text-background"

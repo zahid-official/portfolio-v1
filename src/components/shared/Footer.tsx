@@ -24,7 +24,9 @@ const Footer = () => {
   const pathname = usePathname();
   const showTop = pathname === "/";
   const [formValues, setFormValues] = useState({ email: "", message: "" });
-  const [errors, setErrors] = useState<{ email?: string; message?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; message?: string }>(
+    {},
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const submitTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -151,7 +153,11 @@ const Footer = () => {
               </h3>
             </div>
 
-            <Link href="mailto:zahid.official8@gmail.com">
+            <Link
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=zahid.official8@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               <button
                 type="button"
                 className="group justify-self-end gap-2 px-6 py-3 backdrop-blur hover:bg-foreground hover:text-background inline-flex items-center transition-colors duration-200 justify-center rounded-none border border-black bg-transparent  text-sm font-semibold uppercase text-black cursor-pointer md:mt-0"
@@ -173,7 +179,10 @@ const Footer = () => {
       >
         {/* left Column */}
         <div className="flex-1 bg-black/98 sm:py-28 py-14 px-6">
-          <motion.div className="mx-auto max-w-sm sm:max-w-70" variants={panelVariants}>
+          <motion.div
+            className="mx-auto max-w-sm sm:max-w-70"
+            variants={panelVariants}
+          >
             {/* logo */}
             <div className="navbar-start">
               {/* Logo */}
@@ -189,7 +198,9 @@ const Footer = () => {
             {/* contact */}
             <div className="mt-6 space-y-2.5">
               <Link
-                href="mailto:zahid.official8@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=zahid.official8@gmail.com"
+                target="_blank"
+                rel="noreferrer"
                 className="flex items-center gap-1.5 text-lg"
               >
                 <IoIosMail size={25} /> zahid.official8@gmail.com
