@@ -9,10 +9,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { animate } from "motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { type MouseEvent, useRef, useState } from "react";
 
 // Navitems
 const navItems = [
@@ -28,16 +34,66 @@ const Navbar = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const scrollAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 32);
   });
 
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (!href.includes("#")) {
+      return;
+    }
+
+    const hash = href.slice(href.indexOf("#"));
+    const target = document.querySelector(hash);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const header = document.querySelector("header");
+    const headerOffset = header?.getBoundingClientRect().height ?? 0;
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const nextTop = Math.max(0, targetTop);
+
+    scrollAnimationRef.current?.stop();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.scrollTo({ top: nextTop, behavior: "auto" });
+    } else {
+      scrollAnimationRef.current = animate(window.scrollY, nextTop, {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: (latest) => {
+          window.scrollTo(0, latest);
+        },
+      });
+    }
+
+    window.history.replaceState(null, "", hash);
+    setIsMenuOpen(false);
+  };
+
   return (
     <motion.header
+      initial={shouldReduceMotion ? false : { y: -18, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : { duration: 0.9, delay: 0.05, ease: [0.16, 1, 0.3, 1] }
+      }
       className={cn(
         "fixed top-0 left-0 right-0 z-40  backdrop-blur",
-        isScrolled ? "shadow-sm bg-white/92" : ""
+        isScrolled ? "shadow-sm bg-white/92" : "",
       )}
     >
       <div className="mx-auto w-full max-w-7xl px-3 py-6 flex items-center gap-2.5 justify-between">
@@ -49,13 +105,14 @@ const Navbar = () => {
         {/* Navbar */}
         <nav
           className={cn(
-            "max-md:hidden flex items-center justify-self-center gap-7 rounded-full border border-black/10 px-8 py-3 text-sm font-medium transition-all duration-300"
+            "max-md:hidden flex items-center justify-self-center gap-7 rounded-full border border-black/10 px-8 py-3 text-sm font-medium transition-all duration-300",
           )}
         >
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
+              onClick={(event) => handleNavClick(event, item.href)}
               className="group relative overflow-hidden"
             >
               <span className="block transition-transform duration-300 group-hover:-translate-y-full">
@@ -70,10 +127,14 @@ const Navbar = () => {
 
         {/* Let's Talk */}
         <div className="flex items-center gap-2">
-          <Link href="mailto:zahid.official8@gmail.com">
+          <Link
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=zahid.official8@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+          >
             <button
               className={cn(
-                "group inline-flex items-center justify-self-end gap-2 border border-black/10 px-6 py-3 text-sm font-semibold transition-colors duration-200 max-md:hidden cursor-pointer hover:bg-foreground hover:text-background"
+                "group inline-flex items-center justify-self-end gap-2 border border-black/10 px-6 py-3 text-sm font-semibold transition-colors duration-200 max-md:hidden cursor-pointer hover:bg-foreground hover:text-background",
               )}
             >
               Let&apos;s talk
@@ -86,6 +147,7 @@ const Navbar = () => {
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
+                id="mobile-nav-trigger"
                 className="hidden size-9 items-center justify-center rounded-full border cursor-pointer border-black/10 bg-white/80 transition-all max-md:inline-flex"
                 aria-expanded={isMenuOpen}
                 aria-label="Toggle menu"
@@ -107,7 +169,10 @@ const Navbar = () => {
                   className="group relative block w-full cursor-pointer overflow-hidden text-center text-sm font-medium"
                   asChild
                 >
-                  <Link href={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={(event) => handleNavClick(event, item.href)}
+                  >
                     <span className="grid w-full place-items-center overflow-hidden">
                       <span className="col-start-1 row-start-1 transition-transform duration-300 group-hover:-translate-y-full">
                         {item.label}

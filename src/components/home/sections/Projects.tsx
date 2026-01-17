@@ -1,16 +1,59 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import projectIcon from "@/assets/icons/project-icon.svg";
 import { projects } from "@/data/projects";
+import { motion, useReducedMotion } from "motion/react";
 
 // Projects Component
 const Projects = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const headerVariants = {
+    hidden: { opacity: 0, y: 16 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+  const listVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.12,
+      },
+    },
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 18, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
-    <section id="projects" className="relative overflow-hidden bg-background sm:pt-30 pt-22 sm:pb-20 pb-12">
+    <motion.section
+      id="projects"
+      className="relative overflow-hidden bg-background sm:pt-30 pt-22 sm:pb-20 pb-12"
+      initial={shouldReduceMotion ? "show" : "hidden"}
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+    >
       <div className="container relative mx-auto max-w-7xl px-5">
         {/* Title */}
-        <div className="text-center text-foreground">
+        <motion.div className="text-center text-foreground" variants={headerVariants}>
           <div className="flex flex-col items-center gap-0.5">
             <Image
               src={projectIcon}
@@ -28,17 +71,21 @@ const Projects = () => {
             A focused collection of real builds that highlight clean UI,
             thoughtful UX, and reliable data flows from frontend to backend.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects */}
-        <div className="mt-10 flex flex-wrap justify-center items-center gap-8 ">
+        <motion.div
+          className="mt-10 flex flex-wrap justify-center items-center gap-8"
+          variants={listVariants}
+        >
           {projects.map((project, index) => {
             const cardNumber = String(index + 1).padStart(2, "0");
 
             return (
-              <article
+              <motion.article
                 key={project.slug}
                 className="group relative pb-8 rounded-2xl border border-black/10 bg-white p-6 shadow-[0_20px_50px_-36px_rgba(15,15,15,0.35)] transition-all duration-300 ease-out max-w-sm hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_28px_70px_-40px_rgba(15,15,15,0.45)]"
+                variants={cardVariants}
               >
                 <div className="relative rounded-xl border h-48 overflow-hidden sm:h-56">
                   <Image
@@ -96,12 +143,12 @@ const Projects = () => {
                     <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
                   </Link>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
