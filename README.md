@@ -91,31 +91,31 @@ This portfolio is a single-page, multi-section personal portfolio designed to ma
 
 <div>
 <pre>
-                                ┌──────────────────────────────────────────────────────────────┐
-                                │                         Browser                              │
-                                ├──────────────────────────────────────────────────────────────┤
-                                │  Next.js App (App Router)                                    │
-                                │  ┌────────────────┐  ┌────────────────┐  ┌───────────────┐   │
-                                │  │  RootLayout    │  │  ThemeProvider │  │  Toaster      │   │
-                                │  │                │  │  (next-themes) │  │  (sonner)     │   │
-                                │  └───────┬────────┘  └────────────────┘  └───────────────┘   │
-                                │          │                                                   │
-                                │  ┌───────▼───────────────────────────────────────────────┐   │
-                                │  │                    Pages                              │   │
-                                │  │   /(Home)                   /projects/[slug]          │   │
-                                │  │  ┌───────────────────┐      ┌──────────────────────┐  │   │
-                                │  │  │ Hero   │ About    │      │ ProjectDetailsClient │  │   │
-                                │  │  │ Skills │ Projects │      │ ProjectStack         │  │   │
-                                │  │  └───────────────────┘      └──────────────────────┘  │   │
-                                │  └───────────────────────────────────────────────────────┘   │
-                                │                                │                             │
-                                │  ┌─────────────────────────────▼─────────────────────────┐   │
-                                │  │                     Shared Components                 │   │
-                                │  │      Navbar │ Footer │ ThemeToggler │ UI (shadcn)     │   │
-                                │  └───────────────────────────────────────────────────────┘   │
-                                ├──────────────────────────────────────────────────────────────┤
-                                │   Static Data: projects.ts   │   Assets: fonts, images, PDF  │
-                                └──────────────────────────────────────────────────────────────┘
+                    ┌──────────────────────────────────────────────────────────────┐
+                    │                         Browser                              │
+                    ├──────────────────────────────────────────────────────────────┤
+                    │  Next.js App (App Router)                                    │
+                    │  ┌────────────────┐  ┌────────────────┐  ┌───────────────┐   │
+                    │  │  RootLayout    │  │  ThemeProvider │  │  Toaster      │   │
+                    │  │                │  │  (next-themes) │  │  (sonner)     │   │
+                    │  └───────┬────────┘  └────────────────┘  └───────────────┘   │
+                    │          │                                                   │
+                    │  ┌───────▼───────────────────────────────────────────────┐   │
+                    │  │                    Pages                              │   │
+                    │  │   /(Home)                   /projects/[slug]          │   │
+                    │  │  ┌───────────────────┐      ┌──────────────────────┐  │   │
+                    │  │  │ Hero   │ About    │      │ ProjectDetailsClient │  │   │
+                    │  │  │ Skills │ Projects │      │ ProjectStack         │  │   │
+                    │  │  └───────────────────┘      └──────────────────────┘  │   │
+                    │  └───────────────────────────────────────────────────────┘   │
+                    │                                │                             │
+                    │  ┌─────────────────────────────▼─────────────────────────┐   │
+                    │  │                     Shared Components                 │   │
+                    │  │      Navbar │ Footer │ ThemeToggler │ UI (shadcn)     │   │
+                    │  └───────────────────────────────────────────────────────┘   │
+                    ├──────────────────────────────────────────────────────────────┤
+                    │   Static Data: projects.ts   │   Assets: fonts, images, PDF  │
+                    └──────────────────────────────────────────────────────────────┘
 </pre>
 </div>
 
@@ -193,23 +193,23 @@ portfolio-v1/
 
 <div>
 <pre>
-                                User lands on Home ──► Scrolls through sections ──► Discovers Projects
-                                                                                        │
-                                                            ┌───────────────────────────┘
-                                                            ▼
-                                                    Clicks "View More"
-                                                            │
-                                                            ▼
-                                                    Dynamic Route: /projects/[slug]
-                                                            │
-                                                            ▼
-                                                    Full Project Breakdown
-                                                    (Tech Stack, Live Demo,
-                                                    GitHub Repo, Challenges)
-                                                            │
-                                                            ▼
-                                                    Explore More Projects
-                                                    or Return to Home
+                    User lands on Home ──► Scrolls through sections ──► Discovers Projects
+                                                                            │
+                                                ┌───────────────────────────┘
+                                                ▼
+                                        Clicks "View More"
+                                                │
+                                                ▼
+                                        Dynamic Route: /projects/[slug]
+                                                │
+                                                ▼
+                                        Full Project Breakdown
+                                        (Tech Stack, Live Demo,
+                                        GitHub Repo, Challenges)
+                                                │
+                                                ▼
+                                        Explore More Projects
+                                        or Return to Home
                                 </pre>
 </div>
 
